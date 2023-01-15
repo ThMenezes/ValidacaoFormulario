@@ -14,6 +14,22 @@ formulario.addEventListener("submit", (evento) => {
         alert('Por favor, preencha seu nome.');
         return;
     }
+
+    if(inputEmail.value === "" || !isEmailValidacao(inputEmail.value)) {
+        alert('Por favor, preencha seu email.');
+        return;
+    }
 })
+
+// validação do email com regex
+function isEmailValidacao(email) {
+    const emailRegex = new RegExp (
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]{2,}$/
+    );
+    if (emailRegex.test(email)) {
+        return true
+    }
+    return false;
+}
 
 
