@@ -19,6 +19,18 @@ formulario.addEventListener("submit", (evento) => {
         alert('Por favor, preencha seu email.');
         return;
     }
+
+    if(!validacaoSenha(inputSenha.value, 8)) {
+        alert('A senha precisa ser no mínimo 8 dígitos.');
+        return;
+    }
+
+    if(inputSituacao.value == "") {
+        alert('Por favor, selecione uma opção.');
+        return;
+    }
+
+    formulario.submit()
 })
 
 // validação do email com regex
@@ -30,6 +42,14 @@ function isEmailValidacao(email) {
         return true
     }
     return false;
+}
+
+// validação de senha
+function validacaoSenha(senha, minDigitos) {
+    if(senha.length >= minDigitos) {
+        return true
+    }
+    return false
 }
 
 
