@@ -9,43 +9,52 @@ const inputMensagem = document.querySelector('#mensagem')
 
 const progresso = document.querySelector("#progresso");
 
+const modal = document.querySelector("#modal");
+const fecharBotao = document.querySelector('#fechar-botao');
+const modalMensagem = document.querySelector('.modal-mensagem');
+
 formulario.addEventListener("submit", (evento) => {
     evento.preventDefault();
 
     if(inputNome.value === "") {
-        alert('Por favor, preencha seu nome.');
+        mostrarModal('Por favor, preencha seu nome.');
         return;
     }
 
     if(inputCpf.value === "") {
-        alert('Por favor, insira os números do CPF.');
+        mostrarModal('Por favor, insira os números do CPF.');
         return;
     }
 
     if(inputNascimento.value === "") {
-        alert('Por favor, preencha sua data de nascimento.');
+        mostrarModal('Por favor, preencha sua data de nascimento.');
         return;
     }
 
     if(inputEmail.value === "" || !isEmailValidacao(inputEmail.value)) {
-        alert('Por favor, preencha seu email.');
+        mostrarModal('Por favor, preencha seu email.');
         return;
     }
 
     if(!validacaoSenha(inputSenha.value, 8)) {
-        alert('A senha precisa ser no mínimo 8 dígitos.');
+        mostrarModal('A senha precisa ser no mínimo 8 dígitos.');
         return;
     }
 
     if(inputSituacao.value == "") {
-        alert('Por favor, selecione uma opção.');
+        mostrarModal('Por favor, selecione uma opção.');
         return;
     }
+
+    if (inputMensagem.value === "") {
+        showModal("Por favor, escreva uma mensagem");
+        return;
+      }
 
     formulario.submit()
 
     progresso.value = 0;
-})
+});
 
 // validação do email com regex
 function isEmailValidacao(email) {
@@ -82,3 +91,18 @@ formulario.addEventListener("input", () => {
     progresso.value = (camposCompletos / todosInputs) * 100;
   });
 
+// Exibir e fechar modal
+function mostrarModal(msg) {
+    modalMensagem.textContent = msg;
+    modal.style.display = "block";
+  }
+  
+    fecharBotao.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+  
+  window.addEventListener("click", (evento) => {
+    if (evento.target === modal) {
+      modal.style.display = "none";
+    }
+  });
