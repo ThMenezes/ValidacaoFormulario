@@ -47,7 +47,7 @@ formulario.addEventListener("submit", (evento) => {
     }
 
     if (inputMensagem.value === "") {
-        showModal("Por favor, escreva uma mensagem");
+        mostrarModal("Por favor, escreva uma mensagem");
         return;
       }
 
