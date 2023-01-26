@@ -12,6 +12,10 @@ Esse é um formulário de preenchimento obrigatório em todos os campos, onde as
 
 Objetivo em fazer esse projeto era aprimorar o javascript utilizando funções, condições, eventos e aprender sobre o regex. 
 
+## Link do Projeto:
+
+https://thmenezes.github.io/ValidacaoFormulario/
+
 ## Planejamento do Projeto:
 
 </div>
@@ -26,8 +30,6 @@ Objetivo em fazer esse projeto era aprimorar o javascript utilizando funções, 
 - [x] Responsividade
 
 <div align="center">
-
-## 🛠 Projeto em construção 🚧 
 
 ## Instruções de uso:
 

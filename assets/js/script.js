@@ -21,8 +21,8 @@ formulario.addEventListener("submit", (evento) => {
         return;
     }
 
-    if(inputCpf.value === "") {
-        mostrarModal('Por favor, insira os números do CPF.');
+    if(inputCpf.value === "" || !validarCPF(inputCpf.value)) {
+        mostrarModal('O CPF deve conter 11 dígitos.');
         return;
     }
 
@@ -69,10 +69,47 @@ function isEmailValidacao(email) {
 
 // validação de senha
 function validacaoSenha(senha, minDigitos) {
-    if(senha.length >= minDigitos) {
+    if(senha.length >= minDigitos) { // 8 dígitos
         return true
     }
     return false
+}
+
+// validação de CPF
+function validarCPF(cpf) {	
+	cpf = cpf.replace(/[^\d]+/g,''); // formatação
+
+  if (cpf.length != 11 ||         // Se for diferente de 11 digitos ou numéros repetidos retorna false
+		cpf == "00000000000" || 
+		cpf == "11111111111" || 
+		cpf == "22222222222" || 
+		cpf == "33333333333" || 
+		cpf == "44444444444" || 
+		cpf == "55555555555" || 
+		cpf == "66666666666" || 
+		cpf == "77777777777" || 
+		cpf == "88888888888" || 
+		cpf == "99999999999")
+			return false;		
+                                    // verifica se o primeiro dígito verificador é válido
+	soma = 0;	
+	for (i=0; i < 9; i ++)		
+		soma += parseInt(cpf.charAt(i)) * (10 - i);	
+		resto = 11 - (soma % 11);	
+		if (resto == 10 || resto == 11)		
+			resto = 0;	
+		if (resto != parseInt(cpf.charAt(9)))		
+			return false;		
+                                    // verifica se o segundo dígito verificador é válido.
+	soma = 0;	
+	for (i = 0; i < 10; i ++)		
+		soma += parseInt(cpf.charAt(i)) * (11 - i);	
+	resto = 11 - (soma % 11);	
+	if (resto == 10 || resto == 11)	
+		resto = 0;	
+	if (resto != parseInt(cpf.charAt(10)))
+		return false;		
+	return true;   
 }
 
 // Atualiza a barra de progresso ao preencher o formulário
